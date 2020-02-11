@@ -1,0 +1,54 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, #00AAFF, #00FF6C)
+}
+
+.top-container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 50vh; /* Fill 100% of the height all the time */
+    grid-template-columns: minmax(200px, auto) repeat(1, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(1, 100px);
+
+}
+
+.hangman-container, .word-container {
+    cursor: pointer;
+    font-size: 4rem;
+    padding: 10px;
+    /* border: 1px solid white; */
+    outline: none;
+    word-wrap: none;
+    word-break: none;
+    white-space: nowrap;
+    /* background-color: rgba(255, 255, 255, 0.75); */
+}
+
+.letter-container {
+    cursor: pointer;
+    font-size: 4rem;
+    justify-content: center;
+    align-content: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    outline: none;
+}
+
+.letter-container button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+}
+
+.letter-container .chosen {
+    color: white;
+}
