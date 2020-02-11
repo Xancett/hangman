@@ -7,11 +7,12 @@ var myHiddenWord = hideWord(myWord);
 const letters = document.querySelectorAll('button');
 letters.forEach(button => {
     button.addEventListener('click', () => {
+        // Check if the game is over
+        if (myHiddenWord == myWord) { return; }
         // Check if button has already been chosen
         if (button.classList.contains('chosen')) { return; }
         button.classList.add('chosen');
         checkLetter(button.innerHTML.toString().toLowerCase());
-        console.debug("Letter sent is: " + button.innerHTML.toString())
     })
 })
 
