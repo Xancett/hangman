@@ -1,7 +1,8 @@
 var myWord = getWord();
 var myWordDisplayed = document.getElementById('displayedWord');
+var hangmanImage = document.getElementById('hangman');
 var myHiddenWord = hideWord(myWord);
-
+var turnNumber = 1; // Starts at 1, ends at 7
 
 // Go through each button and attach a listener
 const letters = document.querySelectorAll('button');
@@ -47,8 +48,13 @@ function checkLetter(letter) {
         myHiddenWord = tempWord.toString();
         myWordDisplayed.innerHTML = wordDisplay(myHiddenWord);
     } else {
-        console.debug("No");
-        console.debug("My word: " + myWord.toString() + " guessed: " + letter.toString());
+        turnNumber++;
+        updateImage();
+        // Check if the game is over
+        if (turnNumber > 6) {
+            myHiddenWord = myWord;
+            myWordDisplayed.innerHTML = myWord;
+        }
     }
 }
 
@@ -58,6 +64,10 @@ function hideWord(word) {
         newWord += '_';
     }
     return newWord;
+}
+
+function updateImage() {
+    hangmanImage.src = "images/" + turnNumber.toString() + ".svg";
 }
 
 // Get a new word
