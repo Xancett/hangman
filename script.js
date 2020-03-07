@@ -110,7 +110,7 @@ function UpdateWord(array, letter) {
     // Push word back into the html
     document.getElementById('displayedWord').innerHTML = displayedWord;
     // Check if we have won the game
-    if (!displayedWord.contains('_')) {
+    if (!displayedWord.includes('_')) {
         GameOver(true);
     }
 }
