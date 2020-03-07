@@ -76,7 +76,7 @@ async function CheckLetter(letter) {
         UpdateImage();
     } else {
         // Update the word with that letter
-        UpdateWord(data.array, letter);
+        UpdateWord(JSON.parse(data.array), letter);
     }
 }
 
