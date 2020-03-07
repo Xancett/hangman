@@ -99,7 +99,7 @@ function UpdateWord(array, letter) {
     let myWord = document.getElementById('displayedWord').innerHTML.split(" ");
     let displayedWord = '';
     for (i = 0; i < myWord.length; i++) {
-        if (array.contains(i)) {
+        if (array.includes(i)) {
             displayedWord += letter + ' ';
         } else {
             displayedWord += myWord[i] + ' ';
