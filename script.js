@@ -16,13 +16,13 @@ function Initialize() {
             // Add the classlist
             button.classList.add('chosen');
             // Check the letter
-            CheckLeter(button.innerHTML.toString());
+            CheckLetter(button.innerHTML.toString());
         })
     })
     // Reset word index
     wordIndex = -1;
     // Reset the displayed word
-    myWordDisplayed.innerHTML = '';
+    document.getElementById('displayedWord').innerHTML = '';
     // call function to get a new word and display it
     GetNewWord();
 }
