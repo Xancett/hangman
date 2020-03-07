@@ -76,7 +76,7 @@ async function CheckLetter(letter) {
         UpdateImage();
     } else {
         // Update the word with that letter
-        UpdateWord(JSON.parse(data.array), letter);
+        UpdateWord(data.array, letter);
     }
 }
 
@@ -99,7 +99,7 @@ function UpdateWord(array, letter) {
     let myWord = document.getElementById('displayedWord').innerHTML.split(" ");
     let displayedWord = '';
     for (i = 0; i < myWord.length; i++) {
-        if (array.includes(i)) {
+        if (array.hasOwnProperty(i)) {
             displayedWord += letter + ' ';
         } else {
             displayedWord += myWord[i] + ' ';
