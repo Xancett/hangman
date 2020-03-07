@@ -1,5 +1,10 @@
 var wordIndex;
 
+// Start off the game
+(function () {
+    Initialize();
+})()
+
 // Initialize everything
 function Initialize() {
     // Give all buttons the functions needed
