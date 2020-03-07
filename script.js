@@ -71,9 +71,8 @@ async function CheckLetter(letter) {
         UpdateImage();
     } else {
         // Update the word with that letter
+        UpdateWord(data.array, letter);
     }
-    // Check if we have lost the game or not
-
 }
 
 // Updates the image for hangman
@@ -83,87 +82,48 @@ function UpdateImage() {
     turnNumber = parseInt(document.getElementById('hangman').src.split("images/")[1].charAt(0));
     // Update the number and then update the image
     document.getElementById('hangman').src = "images/" + (turnNumber + 1).toString() + ".svg";
+    // Check if we have reached gameover
+    if (turnNumber >= 6) {
+        GameOver(false);
+    }
+}
+
+// Updates the word using the indexes in the array and the letter
+function UpdateWord(array, letter) {
+    // Get word without spaces
+    let myWord = document.getElementById('displayedWord').innerHTML.split(" ");
+    let displayedWord = '';
+    for (i = 0; i < myWord.length; i++) {
+        if (array.contains(i)) {
+            displayedWord += letter + ' ';
+        } else {
+            displayedWord += myWord[i] + ' ';
+        }
+    }
+    // Trim off the last space
+    displayedWord = displayedWord.substr(0, displayedWord.length - 1);
+    // Push word back into the html
+    document.getElementById('displayedWord').innerHTML = displayedWord;
+    // Check if we have won the game
+    if (!displayedWord.contains('_')) {
+        GameOver(true);
+    }
 }
 
 
-
-
-
-/*
-var myWord = getWord();
-var myWordDisplayed = document.getElementById('displayedWord');
-var hangmanImage = document.getElementById('hangman');
-var myHiddenWord = hideWord(myWord);
-var turnNumber = 1; // Starts at 1, ends at 7
-
-// Go through each button and attach a listener
-const letters = document.querySelectorAll('button');
-letters.forEach(button => {
-    button.addEventListener('click', () => {
-        // Check if the game is over
-        if (myHiddenWord == myWord) { return; }
-        // Check if button has already been chosen
-        if (button.classList.contains('chosen')) { return; }
-        button.classList.add('chosen');
-        checkLetter(button.innerHTML.toString().toLowerCase());
+// Called when the game is completed
+function GameOver(won) {
+    // Disable all buttons
+    const letters = document.querySelectorAll('button');
+    letters.forEach(button => {
+        button.disabled = true;
     })
-})
+    // Setup a reset button
 
-// Word is the word to guess with _ in place if a letter is not guessed
-function wordDisplay(word) {
-    // Give displayWord the first letter
-    let displayWord = word[0].toString();
-    // Loop through each letter
-    for (i = 1; i < word.length; i++) {
-        // Add a space where we want
-        if (word[i] == '_' || word[i - 1] == '_') {
-            displayWord += ' ';
-        }
-        displayWord += word[i].toString();
-    }
-    // Return the word
-    return displayWord;
-}
-
-// Check if letter is in the word
-function checkLetter(letter) {
-    if (myWord.toLowerCase().indexOf(letter) != -1) {
-        let tempWord = '';
-        for (i = 0; i < myWord.length; i++) {
-            if (myWord[i].toLowerCase() == letter) {
-                tempWord += myWord[i].toString();
-            } else {
-                tempWord += myHiddenWord[i].toString();
-            }
-        }
-        // Replace the word
-        myHiddenWord = tempWord.toString();
-        myWordDisplayed.innerHTML = wordDisplay(myHiddenWord);
+    // Check if won, then send data to server
+    if (won) {
+        console.log("won game");
     } else {
-        turnNumber++;
-        updateImage();
-        // Check if the game is over
-        if (turnNumber > 6) {
-            myHiddenWord = myWord;
-            myWordDisplayed.innerHTML = myWord;
-        }
+        console.log('lost game');
     }
 }
-
-function hideWord(word) {
-    let newWord = '';
-    for (i = 0; i < word.length; i++) {
-        newWord += '_';
-    }
-    return newWord;
-}
-
-function updateImage() {
-    hangmanImage.src = "images/" + turnNumber.toString() + ".svg";
-}
-
-// Get a new word
-function getWord() {
-    return 'Hello';
-}
-*/
