@@ -71,7 +71,7 @@ async function CheckLetter(letter) {
     const response = await fetch('/hangmanapi', information);
     const data = await response.json();
     // Parse out the data
-    if (data.array.length == 0) {
+    if (Object.values(JSON.parse(data.array)).length == 0) {
         // We did not find a letter in the word
         UpdateImage();
     } else {
@@ -99,7 +99,7 @@ function UpdateWord(array, letter) {
     let myWord = document.getElementById('displayedWord').innerHTML.split(" ");
     let displayedWord = '';
     for (i = 0; i < myWord.length; i++) {
-        if (Object.values(array).includes(i)) {
+        if (Object.values(JSON.parse(array)).includes(i.toString())) {
             displayedWord += letter + ' ';
         } else {
             displayedWord += myWord[i] + ' ';
