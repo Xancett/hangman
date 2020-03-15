@@ -29,21 +29,28 @@ function Initialize() {
 
 // Get a new word
 async function GetNewWord() {
-    // Setup request
-    const jsonData = { inforequest : "GetNewWord" };
-    const information = {
-        method : 'POST',
-        headers : { 'Content-Type': 'application/json' },
-        body : JSON.stringify(jsonData)
-    };
-    // Send out information
-    const response = await fetch('/hangmanapi', information);
-    // Wait for the response
-    const data = await response.json();
-    // Setup word to display
-    DisplayWord(data.length);
-    // Save index
-    wordIndex = data.index;
+    try {
+        // Setup request
+        const jsonData = { inforequest : "GetNewWord" };
+        const information = {
+            method : 'POST',
+            headers : { 'Content-Type': 'application/json' },
+            body : JSON.stringify(jsonData)
+        };
+        // Send out information
+        const response = await fetch('/hangmanapi', information);
+        // Wait for the response
+        const data = await response.json();
+        // Setup word to display
+        DisplayWord(data.length);
+        // Save index
+        wordIndex = data.index;
+    } catch (error) {
+        console.log(error);
+        // Set debugmode
+        wordIndex = -1;
+        DisplayWord(5);
+    }
 }
 
 // Display the word with the given length
@@ -61,22 +68,43 @@ function DisplayWord(wordLength) {
 
 // Check the letter with the given letter
 async function CheckLetter(letter) {
-    // Setup request
-    const jsonData = { inforequest : "CheckLetter", letter: letter, index: wordIndex };
-    const information = {
-        method : 'POST',
-        headers : { 'Content-Type': 'application/json' },
-        body : JSON.stringify(jsonData)
-    };
-    const response = await fetch('/hangmanapi', information);
-    const data = await response.json();
-    // Parse out the data
-    if (Object.values(JSON.parse(data.array)).length == 0) {
-        // We did not find a letter in the word
-        UpdateImage();
-    } else {
-        // Update the word with that letter
-        UpdateWord(data.array, letter);
+    try{
+        // Setup request
+        const jsonData = { inforequest : "CheckLetter", letter: letter, index: wordIndex };
+        const information = {
+            method : 'POST',
+            headers : { 'Content-Type': 'application/json' },
+            body : JSON.stringify(jsonData)
+        };
+        const response = await fetch('/hangmanapi', information);
+        const data = await response.json();
+        // Parse out the data
+        if (Object.values(JSON.parse(data.array)).length == 0) {
+            // We did not find a letter in the word
+            UpdateImage();
+        } else {
+            // Update the word with that letter
+            UpdateWord(data.array, letter);
+        }
+    } catch (error) {
+        console.log(error);
+        // Set debugmode
+        let debugWord = 'apple';
+        if (debugWord.toLowerCase().indexOf(letter.toLowerCase()) == -1){
+            // Didn't find it
+            UpdateImage();
+            console.log(letter);
+        } else {
+            // Build array to send
+            let arrLetters = [];
+            for (i = 0; i < debugWord.length; i++) {
+                if (debugWord[i].toLowerCase() == letter.toLowerCase()) {
+                    arrLetters.push(i);
+                }
+            }
+            // Update word with that letter
+            UpdateWord(JSON.stringify('array: ' + arrLetters), letter);
+        }
     }
 }
 
