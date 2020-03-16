@@ -20,3 +20,31 @@ svg {
     background: yellowgreen;
     border-radius: 50%;
 }
+
+.left-container {
+    padding-left: 10%;
+    justify-content: left;
+}
+
+.left-container table{
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.left-container table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 48px;
+    padding-right: 48px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+.right-container {
+    padding-right: 20%;
+    justify-content: right;
+}
