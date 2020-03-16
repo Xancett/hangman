@@ -33,7 +33,6 @@ body {
 }
 
 .letter-container {
-    cursor: pointer;
     font-size: 4rem;
     justify-content: center;
     align-content: center;
@@ -51,4 +50,19 @@ body {
 
 .letter-container .chosen {
     color: white;
+}
+
+.endgame-container {
+    font-size: 4rem;
+    justify-content: center;
+    align-content: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    outline: none;
+}
+
+.endgame-container button {
+    cursor: pointer;
+    font-size: 4rem;
+    border: 1px solid black;
 }
