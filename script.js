@@ -8,8 +8,14 @@ var wordIndex;
 // Initialize everything
 function Initialize() {
     // Give all buttons the functions needed
-    const letters = document.querySelectorAll('button');
+    const letters = document.querySelectorAll('#letterbutton');
     letters.forEach(button => {
+        // Show button
+        button.hidden = false;
+        // Remove chosen attribute if there is one
+        if (button.classList.contains('chosen')) { 
+            button.classList.remove('chosen'); 
+        }
         button.addEventListener('click', () => {
             // Check if button has been chosen
             if (button.classList.contains('chosen')) { return; }
@@ -19,6 +25,13 @@ function Initialize() {
             CheckLetter(button.innerHTML.toString());
         })
     })
+    // Enable restart and stats buttons
+    const endGame = document.querySelectorAll('#endgamebutton');
+    endGame.forEach(button => {
+        button.hidden = true;
+    })
+    // Reset the image for hangman
+    ResetHangman();
     // Reset word index
     wordIndex = -1;
     // Reset the displayed word
@@ -121,6 +134,11 @@ function UpdateImage() {
     }
 }
 
+// Resets the hangman image back to the first one
+function ResetHangman() {
+    document.getElementById('hangman').src = "images/1.svg";
+}
+
 // Updates the word using the indexes in the array and the letter
 function UpdateWord(array, letter) {
     // Get word without spaces
@@ -149,10 +167,22 @@ function GameOver(won) {
     // Disable all buttons
     const letters = document.querySelectorAll('button');
     letters.forEach(button => {
-        button.disabled = true;
+        button.hidden = true;
     })
-    // Setup a reset button
-
+    // Enable restart and stats buttons
+    const endGame = document.querySelectorAll('#endgamebutton');
+    endGame.forEach(button => {
+        button.hidden = false;
+        if (button.getAttribute('data-value') == "restart") {
+            button.addEventListener('click', () => {
+                Initialize();
+            })
+        } else {
+            button.addEventListener('click', () => {
+                window.location.href = window.location.href + 'stats/';
+            })
+        }
+    })
     // Check if won, then send data to server
     if (won) {
         console.log("won game");
