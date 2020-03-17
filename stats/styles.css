@@ -8,14 +8,14 @@
 circle {
     fill: yellowgreen;
     stroke: #655;
-    stroke-width: 31;
+    stroke-width: 31.75;
     stroke-dasharray: 0 100;
     animation: fillup 3s linear forwards;
 }
 
 
 svg {
-    width: 100px; height: 100px;
+    width: 400px; height: 400px;
     transform: rotate(-90deg);
     background: yellowgreen;
     border-radius: 50%;
@@ -64,4 +64,5 @@ svg {
     position: absolute;
     right: 0px;
     width: 50%;
+    padding-top: 5%;
 }
