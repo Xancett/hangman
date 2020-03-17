@@ -38,7 +38,12 @@ async function GetData(callback) {
 
 // Updates the information displayed in the table and pie chart
 function UpdateStats(data) {
-    console.log('callback received');
-    console.log(data);
-    console.log(data.word1.word);
+    // Loop through the keys of the dataset
+    for (i = 1; i < 7; i++) {
+        let element = (i < 4 ? 'Easyword' : 'Hardword') + i.toString();
+        // Loop through the values of each key of the key in the dataset
+        for (j = 0; j < 3; j++) {
+            document.getElementById(element).getElementsByTagName('td')[j].innerHTML = data[Object.keys(data)[i - 1]][Object.keys(data[Object.keys(data)[i - 1]])[j]];
+        }
+    }
 }
