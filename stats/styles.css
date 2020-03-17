@@ -15,7 +15,7 @@ circle {
 
 
 svg {
-    width: 400px; height: 400px;
+    width: 380px; height: 380px;
     transform: rotate(-90deg);
     background: yellowgreen;
     border-radius: 50%;
