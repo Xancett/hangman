@@ -22,14 +22,27 @@ svg {
 }
 
 .left-container {
+    outline: dashed;
+    position: absolute;
+    left: 0px;
+    width: 50%;
     padding-left: 10%;
-    justify-content: left;
+    padding-top: 5%;
 }
 
 .left-container table{
     border-collapse: collapse;
     border: 1px solid #ddd;
     padding: 8px;
+    width: 500px;
+    border: 1px solid #000000;
+    margin-bottom: 50px;
+    
+}
+
+.left-container table td, .left-container table th {
+    border: 1px solid #000000;
+    text-align: center;
 }
 
 .left-container table th {
@@ -37,14 +50,18 @@ svg {
     padding-bottom: 12px;
     padding-left: 48px;
     padding-right: 48px;
-    text-align: left;
-    background-color: #4CAF50;
+    text-align: center;
+    background-color: grey;
     color: white;
+    border-top: 2px solid #000000;
+    
 }
 
 
 
 .right-container {
-    padding-right: 20%;
-    justify-content: right;
+    outline: dashed;
+    position: absolute;
+    right: 0px;
+    width: 50%;
 }
