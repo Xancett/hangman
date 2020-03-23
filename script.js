@@ -130,7 +130,7 @@ function UpdateImage() {
     document.getElementById('hangman').src = "images/" + (turnNumber + 1).toString() + ".svg";
     // Check if we have reached gameover
     if (turnNumber >= 6) {
-        GameOver(false);
+        GameOver();
     }
 }
 
@@ -157,13 +157,13 @@ function UpdateWord(array, letter) {
     document.getElementById('displayedWord').innerHTML = displayedWord;
     // Check if we have won the game
     if (!displayedWord.includes('_')) {
-        GameOver(true);
+        GameOver();
     }
 }
 
 
 // Called when the game is completed
-function GameOver(won) {
+function GameOver() {
     // Disable all buttons
     const letters = document.querySelectorAll('button');
     letters.forEach(button => {
@@ -184,9 +184,33 @@ function GameOver(won) {
         }
     })
     // Check if won, then send data to server
-    if (won) {
-        console.log("won game");
-    } else {
-        console.log('lost game');
+    EndGame();
+}
+
+// Called when the game is over and the word is checked
+async function EndGame() {
+    try {
+        // Setup request
+        const jsonData = { inforequest : "CheckWord", word : document.getElementById('displayedWord').innerHTML };
+        const information = {
+            method : 'POST',
+            headers : { 'Content-Type': 'application/json' },
+            body : JSON.stringify(jsonData)
+        };
+        // Send out information
+        const response = await fetch('/hangmanapi', information);
+        // Wait for the response
+        const data = await response.json();
+        // Check if success
+        if (data.info == 'Failure') {
+            // Get and display the word
+            document.getElementById('displayedWord').innerHTML = data.word;
+        } else {
+            console.log('Word guess was a success');
+        }
+    } catch (error) {
+        console.log(error);
+        // Set debugmode
+        document.getElementById('displayedWord').innerHTML = 'apple';
     }
 }
