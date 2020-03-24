@@ -211,6 +211,6 @@ async function EndGame() {
     } catch (error) {
         console.log(error);
         // Set debugmode
-        document.getElementById('displayedWord').innerHTML = 'apple';
+        document.getElementById('displayedWord').innerHTML = 'APPLE';
     }
 }
