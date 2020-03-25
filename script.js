@@ -191,7 +191,7 @@ function GameOver() {
 async function EndGame() {
     try {
         // Setup request
-        const jsonData = { inforequest : "CheckWord", word : document.getElementById('displayedWord').innerHTML.replace(/\s+/g, '') };
+        const jsonData = { inforequest : "CheckWord", word : document.getElementById('displayedWord').innerHTML.replace(/\s+/g, ''), index : wordIndex};
         const information = {
             method : 'POST',
             headers : { 'Content-Type': 'application/json' },
