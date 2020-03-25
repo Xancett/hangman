@@ -190,8 +190,9 @@ function GameOver() {
 // Called when the game is over and the word is checked
 async function EndGame() {
     try {
+        console.log(document.getElementById('displayedWord').innerHTML.replace(/\s+/g, ''));
         // Setup request
-        const jsonData = { inforequest : "CheckWord", word : document.getElementById('displayedWord').innerHTML };
+        const jsonData = { inforequest : "CheckWord", word : document.getElementById('displayedWord').innerHTML.replace(/\s+/g, '') };
         const information = {
             method : 'POST',
             headers : { 'Content-Type': 'application/json' },
@@ -209,6 +210,7 @@ async function EndGame() {
             console.log('Word guess was a success');
         }
     } catch (error) {
+        console.log(document.getElementById('displayedWord').innerHTML.replace(/\s+/g, ''));
         console.log(error);
         // Set debugmode
         document.getElementById('displayedWord').innerHTML = 'apple';
