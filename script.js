@@ -190,13 +190,8 @@ function GameOver() {
 // Called when the game is over and the word is checked
 async function EndGame() {
     try {
-        console.log(document.getElementById('displayedWord').innerHTML.replace(/\s+/g, ''));
         // Setup request
-<<<<<<< HEAD
         const jsonData = { inforequest : "CheckWord", word : document.getElementById('displayedWord').innerHTML.replace(/\s+/g, '') };
-=======
-        const jsonData = { inforequest : "CheckWord", word : document.getElementById('displayedWord').innerHTML, index : wordIndex };
->>>>>>> 64d8d6fb1febbdbc8d60d208966f35872b2d1cfd
         const information = {
             method : 'POST',
             headers : { 'Content-Type': 'application/json' },
@@ -209,14 +204,13 @@ async function EndGame() {
         // Check if success
         if (data.info == 'Failure') {
             // Get and display the word
-            document.getElementById('displayedWord').innerHTML = data.word;
+            document.getElementById('displayedWord').innerHTML = data.word.toUpperCase();
         } else {
             console.log('Word guess was a success');
         }
     } catch (error) {
-        console.log(document.getElementById('displayedWord').innerHTML.replace(/\s+/g, ''));
         console.log(error);
         // Set debugmode
-        document.getElementById('displayedWord').innerHTML = 'APPLE';
+        document.getElementById('displayedWord').innerHTML = 'apple'.toUpperCase();
     }
 }
