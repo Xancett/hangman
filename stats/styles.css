@@ -57,12 +57,14 @@ svg {
     
 }
 
-
-
 .right-container {
     outline: dashed;
     position: absolute;
     right: 0px;
     width: 50%;
     padding-top: 5%;
+}
+
+.paused {
+    animation-play-state: paused;
 }
