@@ -1,5 +1,8 @@
 // Start off by grabbing information
 (function () {
+    // Pause the circle animation
+    document.getElementById('circle').classList.toggle('paused');
+    // Get the stats updated
     GetData(UpdateStats);
 })()
 
@@ -18,6 +21,7 @@ async function GetData(callback) {
         // Wait for the response
         const data = await response.json();
         callback(data);
+        document.getElementById('circle').classList.toggle('paused');
     } catch (error) {
         // Setup fake data
         const data = { 
@@ -33,7 +37,9 @@ async function GetData(callback) {
             win: 20
         };
         callback(data);
+        document.getElementById('circle').classList.toggle('paused');
     }
+    
 }
 
 // Updates the information displayed in the table and pie chart
@@ -43,7 +49,11 @@ function UpdateStats(data) {
         let element = (i < 4 ? 'Easyword' : 'Hardword') + i.toString();
         // Loop through the values of each key of the key in the dataset
         for (j = 0; j < 3; j++) {
-            document.getElementById(element).getElementsByTagName('td')[j].innerHTML = data[Object.keys(data)[i - 1]][Object.keys(data[Object.keys(data)[i - 1]])[j]];
+            if (data[Object.keys(data)[i - 1]][Object.keys(data[Object.keys(data)[i - 1]])[j]] == "undefined") {
+                document.getElementById(element).getElementsByTagName('td')[j].innerHTML = "";
+            } else {
+                document.getElementById(element).getElementsByTagName('td')[j].innerHTML = data[Object.keys(data)[i - 1]][Object.keys(data[Object.keys(data)[i - 1]])[j]];
+            }
         }
     }
 }
