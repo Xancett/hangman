@@ -7,7 +7,7 @@
 async function GetData(callback) {
     try {
         // Setup request
-        const jsonData = { inforequest : "Stats" };
+        const jsonData = { inforequest : "CheckStats" };
         const information = {
             method : 'POST',
             headers : { 'Content-Type': 'application/json' },
