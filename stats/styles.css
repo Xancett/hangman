@@ -6,8 +6,8 @@
 
 
 circle {
-    fill: yellowgreen;
-    stroke: #655;
+    fill: red;
+    stroke: green;
     stroke-width: 31.75;
     stroke-dasharray: 0 100;
     animation: fillup 3s linear forwards;
