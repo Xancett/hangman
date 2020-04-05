@@ -24,7 +24,6 @@ svg {
 }
 
 .left-container {
-    outline: dashed;
     position: absolute;
     left: 0px;
     width: 50%;
@@ -60,11 +59,14 @@ svg {
 }
 
 .right-container {
-    outline: dashed;
     position: absolute;
     right: 0px;
     width: 50%;
     padding-top: 5%;
+}
+
+.right-container p {
+    padding-left: 100px;
 }
 
 .paused {
