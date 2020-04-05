@@ -58,7 +58,7 @@ function UpdateStats(data) {
         }
     }
     // Set the win percentage
-    let winPercent = (data.Wins / (data.Wins + data.Losses)) * 100;
+    let winPercent = (data.total_wins / (data.total_wins + data.total_losses)) * 100;
     winPercent = parseInt(winPercent.toString());
     document.getElementById('winpercent').innerHTML = "Win percentage: " + winPercent + "%";
     // Send that percentage to css to draw the pie accordingly
