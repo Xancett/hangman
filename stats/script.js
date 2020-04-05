@@ -62,4 +62,5 @@ function UpdateStats(data) {
     winPercent = parseInt(winPercent.toString());
     document.getElementById('winpercent').innerHTML = "Win percentage: " + winPercent + "%";
     // Send that percentage to css to draw the pie accordingly
+    document.documentElement.style.setProperty('--fill-percent', winPercent);
 }
