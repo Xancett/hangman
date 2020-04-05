@@ -34,8 +34,8 @@ async function GetData(callback) {
             word5: { 'word': 'job', 'win': 1, 'lose': 6},
             word6: { 'word': 'Jerry', 'win': 1, 'lose': 5},
             // Last is the number of wins and losses
-            Wins: 20,
-            Losses: 50
+            total_wins: 20,
+            total_losses: 50
         };
         callback(data);
         document.getElementById('circle').classList.toggle('paused');
