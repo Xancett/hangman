@@ -33,8 +33,9 @@ async function GetData(callback) {
             word4: { 'word': 'lame', 'win': 2, 'lose': 7},
             word5: { 'word': 'job', 'win': 1, 'lose': 6},
             word6: { 'word': 'Jerry', 'win': 1, 'lose': 5},
-            // Last is the percentage as an integer of winning games
-            win: 20
+            // Last is the number of wins and losses
+            Wins: 20,
+            Losses: 50
         };
         callback(data);
         document.getElementById('circle').classList.toggle('paused');
