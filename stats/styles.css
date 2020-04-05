@@ -1,7 +1,9 @@
-
+:root {
+    --fill-percent: 90;
+}
 
 @keyframes fillup {
-    to { stroke-dasharray: 90 100; }
+    to { stroke-dasharray: var(--fill-percent) 100; }
 }
 
 
