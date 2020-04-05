@@ -50,7 +50,7 @@ function UpdateStats(data) {
         let element = (i < 4 ? 'Easyword' : 'Hardword') + i.toString();
         // Loop through the values of each key of the key in the dataset
         for (j = 0; j < 3; j++) {
-            if (data[Object.keys(data)[i - 1]][Object.keys(data[Object.keys(data)[i - 1]])[j]] == "undefined") {
+            if (typeof data[Object.keys(data)[i - 1]][Object.keys(data[Object.keys(data)[i - 1]])[j]] === 'undefined') {
                 document.getElementById(element).getElementsByTagName('td')[j].innerHTML = "";
             } else {
                 document.getElementById(element).getElementsByTagName('td')[j].innerHTML = data[Object.keys(data)[i - 1]][Object.keys(data[Object.keys(data)[i - 1]])[j]];
